@@ -14,14 +14,16 @@ CONFIG += c++17
 #TARGETDEPS += ../../../src/property/lib/libproperty.so
 
 TEMPLATE = app
-
-LIBS += -lproperty 
-INCLUDEPATH += ../../../src/property/lib \
-               ../../../src/property/core \
-               ../../../src/property/view/treebrowser \
-               ../../../src/property/model \
-               ../../../src/property/items 
-QMAKE_LIBDIR = ../../../src/property/lib 
+LIBS += ../../src/debug/libqproperty.a
+#LIBS += -lproperty
+INCLUDEPATH += ../../src \
+               ../../src/lib \
+               ../../src/core \
+               ../../src/view/treebrowser \
+               ../../src/model \
+               ../../src/items \
+               ../../src/delegate
+#QMAKE_LIBDIR = ../../../src/property/lib
 #CONFIG += release \
 #          warn_on
 

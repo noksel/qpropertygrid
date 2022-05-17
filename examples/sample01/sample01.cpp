@@ -1,23 +1,20 @@
 #include "PropertyModel.h"
 
-#include <QtGui>
+#include <QApplication>
 #include <QTreeView>
-#include "propertydelegate.h"
-#include "propertydelegatefactory.h"
-#include "propertyrenderer.h"
-#include "propertyflatview.h"
+#include "PropertyDelegate.h"
+#include "PropertyDelegateFactory.h"
+#include "PropertyRenderer.h"
+//#include "propertyflatview.h"
 
 
-#include "propertyitems/propertysectionitem.h"
-#include "propertyitems/propertygroupitem.h"
-#include "propertyeditors/propertyintslidereditor.h"
-#include "propertyrenderers/propertycolorrenderer.h"
-#include "modelmanipulators/qobjectimporter.h"
+#include "PropertyItemSection.h"
+#include "PropertyItemGroup.h"
+//#include "propertyeditors/propertyintslidereditor.h"
+//#include "propertyrenderers/propertycolorrenderer.h"
+//#include "modelmanipulators/qobjectimporter.h"
 
-
-
-#include "test.h"
-
+#include "sample01.h"
 
 
 int main(int argc, char **argv)
@@ -40,14 +37,13 @@ int main(int argc, char **argv)
     QVariantToItem *convitem=QPropertyToItemFactory::instance().get<QVariantToItem>(v3Variant.typeName());
     if(convitem!=0)
         model->add
-        (convitem->fromQVariant(v3Variant,"Bah, un test de vector3"));
-//////////////////////////////////////////
+                (convitem->fromQVariant(v3Variant,"Bah, un test de vector3"));
+    //////////////////////////////////////////
 
 
     PropertyDelegateFactory::instance().add<StdRender>(NO_EDITOR_KEY,true);
 
-    PropertyItem *se=model->add
-                     (new PropertySectionItem("section01"));
+    PropertyItem *se=model->add(new PropertySectionItem("section01"));
     PropertyItem *ptr=new PropertyItem("string (defaut editor/readonly)",se);
     ptr->setData("une string");
     ptr->setReadOnly(true);
@@ -61,8 +57,7 @@ int main(int argc, char **argv)
     ptr->setData(PropertyItem::valueEditorRole,PropertyIntSliderEditor::EDITOR_KEY);
 
 
-    se=model->add
-       (new PropertyGroupItem("GROUP01"));
+    se=model->add(new PropertyGroupItem("GROUP01"));
     ptr=new PropertyItem("test",se);
     ptr->setData("unevaleur");
     ptr=new PropertyItem("test01",se);
@@ -84,8 +79,8 @@ int main(int argc, char **argv)
     se=model->add(new PropertySectionItem("Tests d'import de QOBJECTS"));
     importer.importFrom(l,se);
     QTextBrowser *te=new QTextBrowser();
-	te->setObjectName("Pourquoi pas un textbrowser ??");
-	importer.importFrom(te,se);
+    te->setObjectName("Pourquoi pas un textbrowser ??");
+    importer.importFrom(te,se);
     QTreeView widget;
     widget.setModel(model);
     //widget.setColumnCount(2);
@@ -97,15 +92,15 @@ int main(int argc, char **argv)
 ////////////////////////////:
 
 Vector3::Vector3()
-        :m_x(0.0), m_y(0.0), m_z(0.0)
+    :m_x(0.0), m_y(0.0), m_z(0.0)
 {}
 
 Vector3::Vector3(float x, float y, float z)
-        :m_x(x), m_y(y), m_z(z)
+    :m_x(x), m_y(y), m_z(z)
 {}
 
 Vector3::Vector3(const Vector3 &v)
-        :m_x(v.m_x), m_y(v.m_y), m_z(v.m_z)
+    :m_x(v.m_x), m_y(v.m_y), m_z(v.m_z)
 {}
 
 
