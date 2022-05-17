@@ -44,9 +44,9 @@ class Singleton {
   protected:
     static T *_instance;
     Singleton();
-    virtual ~Singleton(){onSingletonDestruct();};
-virtual void onSingletonConstruct() {};
-    virtual void onSingletonDestruct() {};
+    virtual ~Singleton(){onSingletonDestruct();}
+virtual void onSingletonConstruct() {}
+    virtual void onSingletonDestruct() {}
   public:
     static T& instance();
   };
@@ -59,7 +59,7 @@ Singleton<T>::Singleton() {}
 
 template <typename T>
 T& Singleton<T>::instance() {
-  if ( _instance == NULL ) {
+  if ( _instance == nullptr ) {
     _instance = new T();
     _instance->onSingletonConstruct();
     }
@@ -69,8 +69,8 @@ T& Singleton<T>::instance() {
 
 class AbstractItemBuilder {
   public:
-    AbstractItemBuilder() {};
-    virtual ~AbstractItemBuilder() {};
+    AbstractItemBuilder() {}
+    virtual ~AbstractItemBuilder() {}
     virtual void* instance() = 0;
     virtual AbstractItemBuilder* newOneOfThis() = 0;
   };
@@ -82,10 +82,10 @@ class GenericItemBuilder : public AbstractItemBuilder {
     virtual ~GenericItemBuilder();
     void* instance() {
       return new T();
-      };
+      }
     virtual AbstractItemBuilder* newOneOfThis() {
       return new GenericItemBuilder<T>();
-      };
+      }
   };
 
 
@@ -105,10 +105,10 @@ class GenericSingletonItemBuilder : public AbstractItemBuilder {
       if ( !_instance )
         _instance = new T();
       return _instance;
-      };
+      }
     virtual AbstractItemBuilder* newOneOfThis() {
       return new GenericSingletonItemBuilder<T>();
-      };
+      }
 
   };
 
@@ -116,7 +116,7 @@ class GenericSingletonItemBuilder : public AbstractItemBuilder {
 template <typename T>
 GenericSingletonItemBuilder<T>::GenericSingletonItemBuilder()
     : AbstractItemBuilder()
-, _instance( NULL ) {}
+, _instance( nullptr ) {}
 template <typename T>
 GenericSingletonItemBuilder<T>::~GenericSingletonItemBuilder() {}
 
@@ -169,7 +169,7 @@ int Factory<K>::loadPlugins( const QString &pluginsPath, const QString &pluginsP
     if ( !plugin )
       continue; //<- ce serait sympa de prevenir que ca a plante
     interface::FactoryInterface*iface = qobject_cast<interface::FactoryInterface*>( plugin );
-    if ( iface == NULL ) {
+    if ( iface == nullptr ) {
       loader.unload();
       continue; //<- ce serait sympa de prevenir que ca a plante
       }
@@ -189,7 +189,7 @@ template <typename K>
 template <class U>
 void Factory<K>::add
   ( const K&id, bool unique ) {
-  AbstractItemBuilder * builder = NULL;
+  AbstractItemBuilder * builder = nullptr;
   if ( !unique )
     builder = new GenericItemBuilder<U>();
   else
@@ -228,14 +228,14 @@ template <typename U>
 U* Factory<K>::getAtIndex( int i ) const {
   AbstractItemBuilder * builder = getBuilderAtIndex( i );
   if ( !builder )
-    return NULL;
+    return nullptr;
   return static_cast<U*>( builder->instance() );
   }
 
 template <typename K>
 AbstractItemBuilder* Factory<K>::getBuilderAtIndex( int i ) const {
   if ( i < 0 || i >= _hash.size() )
-    return NULL;
+    return nullptr;
   return ( _hash.begin() + i ).value();
   }
 
@@ -252,14 +252,14 @@ U* Factory<K>::get
   ( const K&id ) const {
     AbstractItemBuilder * builder = getBuilder( id );
     if ( !builder )
-      return NULL;
+      return nullptr;
     return static_cast<U*>( builder->instance() );
     }
 
 template <typename K>
 AbstractItemBuilder* Factory<K>::getBuilder( const K&id ) const {
   if ( !_hash.contains( id ) )
-    return NULL;
+    return nullptr;
   return ( _hash.find( id ) ).value();
   }
 

@@ -36,23 +36,23 @@
 
 class PropertyItemBool : public PropertyItem
 {
-        Q_OBJECT;
+    Q_OBJECT
 public:
-        PropertyItemBool(QString name,const QVariant &value=QVariant(),PropertyItem *parent=0);
+    PropertyItemBool(QString name,const QVariant &value=QVariant(),PropertyItem *parent=nullptr);
 
 };
 
 
 class PropertyRendererBool : public PropertyRenderer
 {
-Q_OBJECT;
+    Q_OBJECT
 
 public:
-        PropertyRendererBool(QObject *parent=0);
-        virtual void paintProperty ( QPainter * painter, const QStyleOptionViewItem &option,const QModelIndex &index=QModelIndex());
-        virtual QSize sizeHint(const QStyleOptionViewItem & option,const QModelIndex &index=QModelIndex());
+    PropertyRendererBool(QObject *parent=nullptr);
+    virtual void paintProperty ( QPainter * painter, const QStyleOptionViewItem &option,const QModelIndex &index=QModelIndex());
+    virtual QSize sizeHint(const QStyleOptionViewItem & option,const QModelIndex &index=QModelIndex());
 
-static const QString K_ID;
+    static const QString K_ID;
 };
 
 #endif

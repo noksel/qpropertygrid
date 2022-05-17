@@ -35,28 +35,28 @@
 #include "delegate/PropertyRenderer.h"
 
 class PropertyItemColor : public PropertyItemGroup {
-    Q_OBJECT;
+    Q_OBJECT
 
-  public:
-    PropertyItemColor( QString name, const QVariant &value = QVariant(), PropertyItem *parent = 0 );
-  public slots:
+public:
+    PropertyItemColor( QString name, const QVariant &value = QVariant(), PropertyItem *parent = nullptr );
+public slots:
     void alphaChanged( QVariant newvalue );
     void blueChanged( QVariant newvalue );
     void greenChanged( QVariant newvalue );
     void redChanged( QVariant newvalue );
-  };
+};
 
 
 class PropertyRendererColor : public PropertyRenderer {
-    Q_OBJECT;
-  protected:
+    Q_OBJECT
+protected:
     void drawChecker(QPainter * painter,const QRect &rec,int oneElemSize=3) const;
-  public:
-    PropertyRendererColor( QObject *parent = 0 );
+public:
+    PropertyRendererColor( QObject *parent = nullptr );
     virtual void paintProperty ( QPainter * painter, const QStyleOptionViewItem &option, const QModelIndex &index = QModelIndex() );
     virtual QSize sizeHint( const QStyleOptionViewItem & option, const QModelIndex &index = QModelIndex() );
 
     static const QString K_ID;
-  };
+};
 
 #endif

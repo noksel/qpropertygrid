@@ -36,24 +36,24 @@
 
 class PropertyItemPixmap : public PropertyItem
 {
-        Q_OBJECT;
+    Q_OBJECT
 public:
-        PropertyItemPixmap(QString name,const QVariant &value=QVariant(),PropertyItem *parent=0);
+    PropertyItemPixmap(QString name,const QVariant &value=QVariant(),PropertyItem *parent=nullptr);
 
 };
 
 
 class PropertyRendererPixmap : public PropertyRenderer
 {
-Q_OBJECT;
-  protected:
+    Q_OBJECT
+protected:
     QPixmap getPixmapFromQVariant(const QVariant&px)const;
 public:
-        PropertyRendererPixmap(QObject *parent=0);
-        virtual void paintProperty ( QPainter * painter, const QStyleOptionViewItem &option,const QModelIndex &index=QModelIndex());
-        virtual QSize sizeHint(const QStyleOptionViewItem & option,const QModelIndex &index=QModelIndex());
+    PropertyRendererPixmap(QObject *parent=nullptr);
+    virtual void paintProperty ( QPainter * painter, const QStyleOptionViewItem &option,const QModelIndex &index=QModelIndex());
+    virtual QSize sizeHint(const QStyleOptionViewItem & option,const QModelIndex &index=QModelIndex());
 
-static const QString K_ID;
+    static const QString K_ID;
 };
 
 #endif

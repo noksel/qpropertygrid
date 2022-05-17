@@ -3,6 +3,17 @@
 # Subdir relative project main directory: ./src/property
 # Target is a library:  qproperty
 
+QT       += core gui
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+TARGET = qproperty
+TEMPLATE = lib
+CONFIG += staticlib
+
+CONFIG += c++17
+
+
 RESOURCES += resources/property.qrc 
 HEADERS += core/TreeContainer.h \
            items/PropertyItem.h \
@@ -59,12 +70,11 @@ SOURCES += items/PropertyItem.cpp \
            defaulttype/TypePixmap.cpp \
            defaulttype/TypeChar.cpp \
            items/PropertyItemValueChecker.cpp 
-INCLUDEPATH += ../../src/property
-MOC_DIR = .moc
-UI_DIR = .ui
-OBJECTS_DIR = .obj
-TARGET = qproperty
-CONFIG += debug \
-warn_on \
-staticlib
-TEMPLATE = lib
+#INCLUDEPATH += ../../src/property
+#MOC_DIR = .moc
+#UI_DIR = .ui
+#OBJECTS_DIR = .obj
+
+#CONFIG += debug \
+#warn_on \
+#staticlib

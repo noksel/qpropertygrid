@@ -36,9 +36,9 @@
 
 class PropertyItemRect : public PropertyItemGroup
 {
-        Q_OBJECT;
+        Q_OBJECT
 public:
-        PropertyItemRect(QString name,const QVariant &value=QVariant(),PropertyItem *parent=0);
+        PropertyItemRect(QString name,const QVariant &value=QVariant(),PropertyItem *parent=nullptr);
 public slots:
        void onXChange(QVariant newValue);
        void onYChange(QVariant newValue);

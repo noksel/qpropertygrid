@@ -36,10 +36,10 @@
 class PropertyItem;
 class PropertyModel : public QAbstractItemModel
 {
-    Q_OBJECT;
+    Q_OBJECT
     PropertyItem*_root;
 public:
-    PropertyModel( QObject * parent = 0 );
+    PropertyModel( QObject * parent = nullptr );
     //model
     virtual int columnCount ( const QModelIndex & parent = QModelIndex() ) const;
     virtual QVariant data ( const QModelIndex & index, int role = Qt::DisplayRole ) const;

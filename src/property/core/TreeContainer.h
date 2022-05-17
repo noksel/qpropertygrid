@@ -30,7 +30,7 @@
 ***************************************************************************/
 #ifndef TREECONTAINER_H
 #define TREECONTAINER_H
-
+#include <QList>
 template <typename T>
 class TreeContainer {
   protected:

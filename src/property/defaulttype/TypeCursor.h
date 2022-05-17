@@ -37,9 +37,9 @@
 #include <QCursor>
 class PropertyItemCursor : public PropertyItemGroup
 {
-        Q_OBJECT;
+    Q_OBJECT
 public:
-        PropertyItemCursor(QString name,const QVariant &value=QVariant(),PropertyItem *parent=0);
+    PropertyItemCursor(QString name,const QVariant &value=QVariant(),PropertyItem *parent=nullptr);
 
 
 public slots:
@@ -49,15 +49,15 @@ public slots:
 
 class PropertyRendererCursor : public PropertyRenderer
 {
-Q_OBJECT;
+    Q_OBJECT
 
 public:
-        PropertyRendererCursor(QObject *parent=0);
-        virtual void paintProperty ( QPainter * painter, const QStyleOptionViewItem &option,const QModelIndex &index=QModelIndex());
-        virtual QSize sizeHint(const QStyleOptionViewItem & option,const QModelIndex &index=QModelIndex());
+    PropertyRendererCursor(QObject *parent=nullptr);
+    virtual void paintProperty ( QPainter * painter, const QStyleOptionViewItem &option,const QModelIndex &index=QModelIndex());
+    virtual QSize sizeHint(const QStyleOptionViewItem & option,const QModelIndex &index=QModelIndex());
 
-static const QString K_ID;
-static QPixmap getCursorPixmap( const QCursor &cursor );
+    static const QString K_ID;
+    static QPixmap getCursorPixmap( const QCursor &cursor );
 };
 
 #endif

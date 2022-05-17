@@ -35,12 +35,12 @@
 #include "delegate/PropertyRenderer.h"
 
 class PropertyItemFont : public PropertyItemGroup {
-    Q_OBJECT;
-  public:
-    PropertyItemFont( QString name, const QVariant &value = QVariant(), PropertyItem *parent = 0 );
+    Q_OBJECT
+public:
+    PropertyItemFont( QString name, const QVariant &value = QVariant(), PropertyItem *parent = nullptr );
 
 
-  public slots:
+public slots:
     void onSizeChange( QVariant newValue );
     void onBoldChange( QVariant newValue );
     void onItalicChange( QVariant newValue );
@@ -49,6 +49,6 @@ class PropertyItemFont : public PropertyItemGroup {
     void onKerningChange( QVariant newValue );
     void onAntialiasChange( QVariant newValue );
 
-  };
+};
 
 #endif
