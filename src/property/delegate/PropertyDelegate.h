@@ -35,7 +35,7 @@
 #include "delegate/PropertyRenderer.h"
 #include <QItemDelegate>
 class PropertyDelegate : public QItemDelegate {
-    Q_OBJECT;
+    Q_OBJECT
   protected:
     Factory<> *_factory;
     PropertyItem * toItem( const QModelIndex & index ) const;

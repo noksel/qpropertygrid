@@ -37,7 +37,7 @@
 class sampleForm : public QMainWindow,public Ui_MainWindow
 {
 
-Q_OBJECT;
+Q_OBJECT
 protected:
 PropertyTreeBrowser _tree;
 virtual void mouseReleaseEvent ( QMouseEvent * event );

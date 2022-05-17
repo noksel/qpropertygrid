@@ -35,9 +35,9 @@
 
 class PropertyItemSection : public PropertyItem
 {
-	Q_OBJECT;
+	Q_OBJECT
 public:
-	PropertyItemSection(QString name,PropertyItem *parent=0);
+	PropertyItemSection(QString name,PropertyItem *parent=nullptr);
 
 };
 

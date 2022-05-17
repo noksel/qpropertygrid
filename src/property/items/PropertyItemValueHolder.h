@@ -36,7 +36,7 @@
 
 class PropertyItem;
 class PropertyItemValueHolder : public QObject {
-Q_OBJECT;
+Q_OBJECT
   protected:
         PropertyItemValueChecker *_checker;
   public:

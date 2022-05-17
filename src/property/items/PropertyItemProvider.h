@@ -37,7 +37,7 @@ class PropertyItemProvider
 {
 public:
 virtual ~PropertyItemProvider(){};
-virtual PropertyItem* fromQVariant(const QString &name="",const QVariant&value=QVariant(),PropertyItem *parent=0)const;
+virtual PropertyItem* fromQVariant(const QString &name="",const QVariant&value=QVariant(),PropertyItem *parent=nullptr)const;
 };
 
 
