@@ -46,7 +46,7 @@ virtual PropertyItem* modelIndexToData(const QModelIndex &index=QModelIndex()) c
 return qobject_cast<PropertyItem *>((QObject*)index.internalPointer());
         };
 public:
-        PropertyRenderer(QObject *parent=0)
+        PropertyRenderer(QObject *parent=nullptr)
         :QObject(parent){};
         virtual void paintProperty ( QPainter * painter, const QStyleOptionViewItem &option,const QModelIndex &index=QModelIndex())=0;
         virtual QSize sizeHint(const QStyleOptionViewItem & option,const QModelIndex &index=QModelIndex())=0;

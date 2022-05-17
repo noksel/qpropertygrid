@@ -37,7 +37,7 @@ class PropertyRendererSection : public PropertyRenderer
 Q_OBJECT
 
 public:
-        PropertyRendererSection(QObject *parent=0);
+        PropertyRendererSection(QObject *parent=nullptr);
         virtual void paintProperty ( QPainter * painter, const QStyleOptionViewItem &option,const QModelIndex &index=QModelIndex());
         virtual QSize sizeHint(const QStyleOptionViewItem & option,const QModelIndex &index=QModelIndex());
 

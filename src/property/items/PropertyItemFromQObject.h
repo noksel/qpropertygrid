@@ -39,10 +39,10 @@ class PropertyItemFromQObject : public QObject {
         bool _skipRO;
     Factory<>*_itemFactory;
     void importPropertyForClass( const QObject *object, const QMetaObject *metaobject = 0, PropertyItem*parent = 0 );
-    PropertyItem*  buildPropertyItem(const QObject *object,QMetaProperty &qmprop,PropertyItem *parent=0);
+    PropertyItem*  buildPropertyItem(const QObject *object,QMetaProperty &qmprop,PropertyItem *parent=nullptr);
   public:
     PropertyItemFromQObject( Factory<>*fact, QObject *parent = 0 );
-    PropertyItem*importFrom(const QObject *obj,bool skipReadOnly=true,PropertyItem*parent=0,bool createSection=true);
+    PropertyItem*importFrom(const QObject *obj,bool skipReadOnly=true,PropertyItem*parent=nullptr,bool createSection=true);
   };
 
 #endif

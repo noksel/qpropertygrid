@@ -38,7 +38,7 @@ class PropertyItemPixmap : public PropertyItem
 {
         Q_OBJECT
 public:
-        PropertyItemPixmap(QString name,const QVariant &value=QVariant(),PropertyItem *parent=0);
+        PropertyItemPixmap(QString name,const QVariant &value=QVariant(),PropertyItem *parent=nullptr);
 
 };
 
@@ -49,7 +49,7 @@ Q_OBJECT
   protected:
     QPixmap getPixmapFromQVariant(const QVariant&px)const;
 public:
-        PropertyRendererPixmap(QObject *parent=0);
+        PropertyRendererPixmap(QObject *parent=nullptr);
         virtual void paintProperty ( QPainter * painter, const QStyleOptionViewItem &option,const QModelIndex &index=QModelIndex());
         virtual QSize sizeHint(const QStyleOptionViewItem & option,const QModelIndex &index=QModelIndex());
 

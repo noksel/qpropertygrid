@@ -36,7 +36,7 @@ class PropertyTreeBrowser : public QTreeView
 Q_OBJECT
 
 public:
-PropertyTreeBrowser(QWidget*parent=0);
+PropertyTreeBrowser(QWidget*parent=nullptr);
 
 protected:
 void drawBranches ( QPainter * painter, const QRect & rect, const QModelIndex & index ) const;
