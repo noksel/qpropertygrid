@@ -34,40 +34,40 @@
 
 PropertyItemValueChecker::PropertyItemValueChecker()
     : _enabled( false )
-, _valid( false ) {
-  }
+    , _valid( false ) {
+}
 
-  PropertyItemValueChecker::PropertyItemValueChecker(const PropertyItemValueChecker&other)
-          : _enabled( other._enabled )
-, _valid( other._valid )
-  {
+PropertyItemValueChecker::PropertyItemValueChecker(const PropertyItemValueChecker&other)
+    : _enabled( other._enabled )
+    , _valid( other._valid )
+{
 
-  }
+}
 
 QVariant PropertyItemValueChecker::checkinValue( const QVariant&value ) const{
-  return value;
-  }
+    return value;
+}
 
 QVariant PropertyItemValueChecker::checkoutValue( const QVariant&value,bool internal )const {
-  return value;
-  }
+    return value;
+}
 
 bool PropertyItemValueChecker::enabled() const {
-  return _enabled;
+    return _enabled;
 
-  }
+}
 void PropertyItemValueChecker::setEnable( bool enable ) {
-  _enabled = enable;
+    _enabled = enable;
 
-  }
+}
 bool PropertyItemValueChecker::valid() const {
-  return _valid;
+    return _valid;
 
-  }
+}
 void PropertyItemValueChecker::setValid( bool valid ) {
 
-  _valid = valid;
-  }
+    _valid = valid;
+}
 
 
 

@@ -35,30 +35,30 @@
 
 PropertyItemValueHolder::PropertyItemValueHolder( PropertyItemValueChecker *checker )
     : QObject( 0 )
-, _checker( checker ) {
+    , _checker( checker ) {
 
-  }
+}
 PropertyItemValueHolder::PropertyItemValueHolder( const PropertyItemValueHolder& ) {}
 
 PropertyItemValueHolder::~PropertyItemValueHolder() {
-  if ( _checker )
-    delete _checker;
-  }
+    if ( _checker )
+        delete _checker;
+}
 
-    PropertyItemValueChecker *PropertyItemValueHolder::getValueChecker() {
-  return _checker;
-  }
+PropertyItemValueChecker *PropertyItemValueHolder::getValueChecker() {
+    return _checker;
+}
 
 void PropertyItemValueHolder::setValueChecker(PropertyItemValueChecker *checker) {
-  if ( _checker )
-    delete _checker;
-  _checker =  checker;
-  }
+    if ( _checker )
+        delete _checker;
+    _checker =  checker;
+}
 
 QVariant PropertyItemValueHolder::getForRenderer( const PropertyItem *item ) {
-  if ( _checker && _checker->valid() && _checker->enabled() )
-    return _checker->checkoutValue( get ( item ) );
-  return get( item );
-  }
+    if ( _checker && _checker->valid() && _checker->enabled() )
+        return _checker->checkoutValue( get ( item ) );
+    return get( item );
+}
 
 

@@ -33,56 +33,53 @@
 
 
 PropertyItemGroupValue::PropertyItemGroupValue( PropertyItemValueChecker *checker)
-:PropertyItemValueHolder(checker)
+    :PropertyItemValueHolder(checker)
 {
-
-
 }
 
 void PropertyItemGroupValue::set( const PropertyItem *item, const QVariant &value ) {
-  return ;
-  }
+    return ;
+}
 
 QVariant PropertyItemGroupValue::get( const PropertyItem *item ) {
-  return item->data();
-  }
+    return item->data();
+}
 
 
 QVariant PropertyItemGroupValue::getForRenderer( const PropertyItem *item ) {
-  if ( item == 0 )
-    return "";
-  QString ret = "[ ";
-  for ( int i = 0;i < item->childCount();i++ ) {
-    PropertyItem *child = item->childAt( i );
-    if ( child == 0 )
-      continue;
-    QVariant val = child ->data( PropertyItem::valueToRender );
-    if ( val.canConvert( QVariant::String ) ) {
-      if ( i > 0 )
-        ret += ", ";
-      ret += val.toString();
-      } else {
-      if ( i > 0 )
-        ret += ", ";
-      ret += "...";
-      }
+    if ( item == 0 )
+        return "";
+    QString ret = "[ ";
+    for ( int i = 0;i < item->childCount();i++ ) {
+        PropertyItem *child = item->childAt( i );
+        if ( child == 0 )
+            continue;
+        QVariant val = child ->data( PropertyItem::valueToRender );
+        if ( val.canConvert( QVariant::String ) ) {
+            if ( i > 0 )
+                ret += ", ";
+            ret += val.toString();
+        } else {
+            if ( i > 0 )
+                ret += ", ";
+            ret += "...";
+        }
 
     }
-  ret += " ]";
-  return ret;
-
-  }
+    ret += " ]";
+    return ret;
+}
 
 
 PropertyItemGroup::PropertyItemGroup( QString name, PropertyItem *parent )
     : PropertyItem( name, parent /*,new PropertyItemGroupValue()*/) {
 
-        setGroup( true );
-  setReadOnly( true );
-  //setSameRendererForBoth(PropertyRendererGroup::K_ID);
-  setNameRenderer( PropertyRendererGroup::K_ID );
- // setValueHolder( new PropertyItemGroupValue() );
-  //setValueRenderer( "" );
-  //setData(nameRendererRole,PropertySectionRenderer::RENDER_KEY);
-  //setData(valueRendererRole,PropertySectionRenderer::RENDER_KEY);
-  }
+    setGroup( true );
+    setReadOnly( true );
+    //setSameRendererForBoth(PropertyRendererGroup::K_ID);
+    setNameRenderer( PropertyRendererGroup::K_ID );
+    // setValueHolder( new PropertyItemGroupValue() );
+    //setValueRenderer( "" );
+    //setData(nameRendererRole,PropertySectionRenderer::RENDER_KEY);
+    //setData(valueRendererRole,PropertySectionRenderer::RENDER_KEY);
+}

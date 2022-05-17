@@ -37,13 +37,13 @@
 class sampleForm : public QMainWindow,public Ui_MainWindow
 {
 
-Q_OBJECT
+    Q_OBJECT
 protected:
-PropertyTreeBrowser _tree;
-virtual void mouseReleaseEvent ( QMouseEvent * event );
+    PropertyTreeBrowser _tree;
+    virtual void mouseReleaseEvent ( QMouseEvent * event );
 public:
-   sampleForm();
+    sampleForm();
 public slots:
-void onSelectWidget(bool);
+    void onSelectWidget(bool);
 
 };

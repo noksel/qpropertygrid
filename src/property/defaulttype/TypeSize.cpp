@@ -32,30 +32,30 @@
 #include "defaulttype/TypeInt.h"
 #include <QDebug>
 PropertyItemSize::PropertyItemSize( QString name, const QVariant &value, PropertyItem *parent )
-:PropertyItemGroup(name,parent) {
-setData(PropertyItem::valueRole,value);
-QSize sz=value.toSize();
-PropertyItem *it=new PropertyItemInt("Width",sz.width(),this);
-it->setMeta(true);
-connect(it,SIGNAL(dataChanged(QVariant)),this,SLOT(onWidthChange(QVariant)));
-it=new PropertyItemInt("Height",sz.height(),this);
-it->setMeta(true);
-connect(it,SIGNAL(dataChanged(QVariant)),this,SLOT(onHeightChange(QVariant)));
+    :PropertyItemGroup(name,parent) {
+    setData(PropertyItem::valueRole,value);
+    QSize sz=value.toSize();
+    PropertyItem *it=new PropertyItemInt("Width",sz.width(),this);
+    it->setMeta(true);
+    connect(it,SIGNAL(dataChanged(QVariant)),this,SLOT(onWidthChange(QVariant)));
+    it=new PropertyItemInt("Height",sz.height(),this);
+    it->setMeta(true);
+    connect(it,SIGNAL(dataChanged(QVariant)),this,SLOT(onHeightChange(QVariant)));
 }
 
 
 void PropertyItemSize::onWidthChange(QVariant newValue)
 {
-QSize sz=data().toSize();
-sz.setWidth(newValue.toInt());
-setData(PropertyItem::valueRole,sz);
+    QSize sz=data().toSize();
+    sz.setWidth(newValue.toInt());
+    setData(PropertyItem::valueRole,sz);
 }
 
 void PropertyItemSize::onHeightChange(QVariant newValue)
 {
-QSize sz=data().toSize();
-sz.setHeight(newValue.toInt());
-setData(PropertyItem::valueRole,sz);
+    QSize sz=data().toSize();
+    sz.setHeight(newValue.toInt());
+    setData(PropertyItem::valueRole,sz);
 
 }
 

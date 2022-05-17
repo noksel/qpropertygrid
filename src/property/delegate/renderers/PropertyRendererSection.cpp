@@ -30,48 +30,48 @@
 ***************************************************************************/
 #include "delegate/renderers/PropertyRendererSection.h"
 #include <QApplication>
- #include <QPaintDevice>
+#include <QPaintDevice>
 
 const QString PropertyRendererSection::K_ID="RENDER_SECTION_DEF";
 
 PropertyRendererSection::PropertyRendererSection( QObject *parent )
     : PropertyRenderer( parent ) {
 
-  }
+}
 
 void PropertyRendererSection::paintProperty ( QPainter * painter, const QStyleOptionViewItem &option, const QModelIndex &index  ) {
-static const int i = 9;
-PropertyItem *data=modelIndexToData(index);
-        if(data==0)
-          return;
+    static const int i = 9;
+    PropertyItem *data=modelIndexToData(index);
+    if(data==0)
+        return;
 
-QRect backRect = option.rect;
-        painter->setBrush(option.palette.brush( QPalette::Button));
-//painter->setBrush(QColor(255,0,0));
-//painter->setPen(Qt::NoPen);
- //       backRect.setX(i*2);
-  //      painter->drawRect(backRect);
-//QPalette::ButtonText
-painter->save();
-painter->setPen(option.palette.color( QPalette::Dark));
-/*if(index.column()>0)
+    QRect backRect = option.rect;
+    painter->setBrush(option.palette.brush( QPalette::Button));
+    //painter->setBrush(QColor(255,0,0));
+    //painter->setPen(Qt::NoPen);
+    //       backRect.setX(i*2);
+    //      painter->drawRect(backRect);
+    //QPalette::ButtonText
+    painter->save();
+    painter->setPen(option.palette.color( QPalette::Dark));
+    /*if(index.column()>0)
         return;*/
- // draw text
+    // draw text
 
-        QRect r = option.rect;
+    QRect r = option.rect;
 
-        QRect textrect = QRect(r.left() + i*2, r.top(), r.width() - ((5*i)/2), r.height());
-        QString text = option.fontMetrics.elidedText(data->name(), Qt::ElideMiddle, textrect.width()
-            );
-painter->setBrush(QColor(255,0,0));
-painter->setPen(QColor(0,0,255));
-        painter->drawText(textrect,text,QTextOption( Qt::AlignCenter));
+    QRect textrect = QRect(r.left() + i*2, r.top(), r.width() - ((5*i)/2), r.height());
+    QString text = option.fontMetrics.elidedText(data->name(), Qt::ElideMiddle, textrect.width()
+                                                 );
+    painter->setBrush(QColor(255,0,0));
+    painter->setPen(QColor(0,0,255));
+    painter->drawText(textrect,text,QTextOption( Qt::AlignCenter));
 
-painter->restore();
+    painter->restore();
 }
 
 
 QSize PropertyRendererSection::sizeHint( const QStyleOptionViewItem & option, const QModelIndex &index  ) {
-return option.rect.size();
-  }
+    return option.rect.size();
+}
 

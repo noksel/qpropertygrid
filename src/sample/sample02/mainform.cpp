@@ -38,33 +38,33 @@
 #include "defaulttype/TypeColor.h"
 #include "defaulttype/TypePixmap.h"
 sampleForm::sampleForm()
-:QMainWindow(0)
-,Ui_MainWindow()
-,_tree()
+    :QMainWindow(0)
+    ,Ui_MainWindow()
+    ,_tree()
 {
-setupUi(this);
-_tree.show();
-connect(getPropButton,SIGNAL(clicked(bool)),this,SLOT(onSelectWidget(bool)));
+    setupUi(this);
+    _tree.show();
+    connect(getPropButton,SIGNAL(clicked(bool)),this,SLOT(onSelectWidget(bool)));
 }
 
 void sampleForm::mouseReleaseEvent( QMouseEvent * event )
 {
-releaseMouse();
-QWidget *w=childAt(event->pos());
-if(!w)
-{
-  qDebug("Pas de widget");
-return;
-}
-PropertyModel *model=new PropertyModel();
-PropertyItemFromQObject *conv=new PropertyItemFromQObject(&PropertyItemDefaultFactory::instance());
-PropertyItem *it=conv->importFrom(w,true,0);
-model->add( new PropertyItemColor("une couleur",QColor(0,255,0)));
-model->add( new PropertyItemPixmap("un Pixmap",QPixmap("blender.png")));
-model->add(it);
-_tree.setModel(model);
-_tree.setItemDelegate(new PropertyDelegate());
-_tree.show();
+    releaseMouse();
+    QWidget *w=childAt(event->pos());
+    if(!w)
+    {
+        qDebug("Pas de widget");
+        return;
+    }
+    PropertyModel *model=new PropertyModel();
+    PropertyItemFromQObject *conv=new PropertyItemFromQObject(&PropertyItemDefaultFactory::instance());
+    PropertyItem *it=conv->importFrom(w,true,0);
+    model->add( new PropertyItemColor("une couleur",QColor(0,255,0)));
+    model->add( new PropertyItemPixmap("un Pixmap",QPixmap("blender.png")));
+    model->add(it);
+    _tree.setModel(model);
+    _tree.setItemDelegate(new PropertyDelegate());
+    _tree.show();
 
 
 }
@@ -73,5 +73,5 @@ _tree.show();
 void sampleForm::onSelectWidget(bool)
 {
 
-grabMouse();
+    grabMouse();
 }

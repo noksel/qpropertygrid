@@ -38,9 +38,9 @@ const QString PropertyItemDefaultFactory::K_DEFAULT_KEY="##DEFAULT##";
 void PropertyItemDefaultFactory::onSingletonConstruct()
 {
 
-this->add<PropertyItemProvider>(K_DEFAULT_KEY,true);
+    this->add<PropertyItemProvider>(K_DEFAULT_KEY,true);
 
-/*
+    /*
  switch ( variant.type() ) {
       case QVariant::Invalid:
       break;

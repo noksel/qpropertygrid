@@ -31,13 +31,13 @@
 #include "items/PropertyItemSection.h"
 #include "delegate/renderers/PropertyRendererSection.h"
 PropertyItemSection::PropertyItemSection(QString name,PropertyItem *parent)
-:PropertyItem(name,parent)
-	{
-	setSection(true);
-	setReadOnly(true);
+    :PropertyItem(name,parent)
+{
+    setSection(true);
+    setReadOnly(true);
 
-setNameRenderer( PropertyRendererSection::K_ID);
-        setValueRenderer( "");
-        //setData(nameRendererRole,PropertySectionRenderer::RENDER_KEY);
-	//setData(valueRendererRole,PropertySectionRenderer::RENDER_KEY);
-	}
+    setNameRenderer( PropertyRendererSection::K_ID);
+    setValueRenderer( "");
+    //setData(nameRendererRole,PropertySectionRenderer::RENDER_KEY);
+    //setData(valueRendererRole,PropertySectionRenderer::RENDER_KEY);
+}

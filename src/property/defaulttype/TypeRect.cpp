@@ -32,49 +32,49 @@
 #include "defaulttype/TypeInt.h"
 #include <QDebug>
 PropertyItemRect::PropertyItemRect( QString name, const QVariant &value, PropertyItem *parent )
-:PropertyItemGroup(name,parent) {
-setData(PropertyItem::valueRole,value);
-QRect rec=data().toRect();
-PropertyItem *it=new PropertyItemInt("X",rec.x(),this);
-it->setMeta(true);
-connect(it,SIGNAL(dataChanged(QVariant)),this,SLOT(onXChange(QVariant)));
-it=new PropertyItemInt("Y",rec.y(),this);
-it->setMeta(true);
-connect(it,SIGNAL(dataChanged(QVariant)),this,SLOT(onYChange(QVariant)));
-it=new PropertyItemInt("Width",rec.width(),this);
-it->setMeta(true);
-connect(it,SIGNAL(dataChanged(QVariant)),this,SLOT(onWidthChange(QVariant)));
-it=new PropertyItemInt("Height",rec.height(),this);
-it->setMeta(true);
-connect(it,SIGNAL(dataChanged(QVariant)),this,SLOT(onHeightChange(QVariant)));
+    :PropertyItemGroup(name,parent) {
+    setData(PropertyItem::valueRole,value);
+    QRect rec=data().toRect();
+    PropertyItem *it=new PropertyItemInt("X",rec.x(),this);
+    it->setMeta(true);
+    connect(it,SIGNAL(dataChanged(QVariant)),this,SLOT(onXChange(QVariant)));
+    it=new PropertyItemInt("Y",rec.y(),this);
+    it->setMeta(true);
+    connect(it,SIGNAL(dataChanged(QVariant)),this,SLOT(onYChange(QVariant)));
+    it=new PropertyItemInt("Width",rec.width(),this);
+    it->setMeta(true);
+    connect(it,SIGNAL(dataChanged(QVariant)),this,SLOT(onWidthChange(QVariant)));
+    it=new PropertyItemInt("Height",rec.height(),this);
+    it->setMeta(true);
+    connect(it,SIGNAL(dataChanged(QVariant)),this,SLOT(onHeightChange(QVariant)));
 }
 
 
 void PropertyItemRect::onXChange(QVariant newValue)
 {
-QRect rec=data().toRect();
-rec.setX(newValue.toInt());
-setData(PropertyItem::valueRole,rec);
+    QRect rec=data().toRect();
+    rec.setX(newValue.toInt());
+    setData(PropertyItem::valueRole,rec);
 }
 
 void PropertyItemRect::onYChange(QVariant newValue)
 {
-QRect rec=data().toRect();
-rec.setY(newValue.toInt());
-setData(PropertyItem::valueRole,rec);
+    QRect rec=data().toRect();
+    rec.setY(newValue.toInt());
+    setData(PropertyItem::valueRole,rec);
 }
 
 
 void PropertyItemRect::onWidthChange(QVariant newValue)
 {
-QRect rec=data().toRect();
-rec.setWidth(newValue.toInt());
-setData(PropertyItem::valueRole,rec);
+    QRect rec=data().toRect();
+    rec.setWidth(newValue.toInt());
+    setData(PropertyItem::valueRole,rec);
 }
 
 void PropertyItemRect::onHeightChange(QVariant newValue)
 {
-QRect rec=data().toRect();
-rec.setHeight(newValue.toInt());
-setData(PropertyItem::valueRole,rec);
+    QRect rec=data().toRect();
+    rec.setHeight(newValue.toInt());
+    setData(PropertyItem::valueRole,rec);
 }

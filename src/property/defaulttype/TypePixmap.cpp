@@ -31,15 +31,15 @@
 #include "TypePixmap.h"
 #include <QApplication>
 #include <QDebug>
- #include <QStyleOptionButton>
+#include <QStyleOptionButton>
 #include <QColor>
 #include <QBitmap>
 
 PropertyItemPixmap::PropertyItemPixmap( QString name, const QVariant &value, PropertyItem *parent )
     : PropertyItem( name, parent ) {
-  setData( value );
-  setValueRenderer( PropertyRendererPixmap::K_ID );
-  }
+    setData( value );
+    setValueRenderer( PropertyRendererPixmap::K_ID );
+}
 
 
 /////////////////////////////////////////////////////////////
@@ -48,36 +48,36 @@ const QString PropertyRendererPixmap::K_ID = "RENDER_PIXMAP_DEF";
 
 PropertyRendererPixmap::PropertyRendererPixmap( QObject *parent )
     : PropertyRenderer( parent ) {
-  }
+}
 
 void PropertyRendererPixmap::paintProperty ( QPainter * painter, const QStyleOptionViewItem &option, const QModelIndex &index ) {
-  static const int i = 16;
-  PropertyItem *data = modelIndexToData( index );
-  if ( data == 0 )
-    return ;
-  QRect rect = option.rect;
-  QRect pixRec = QRect( rect.left() + i / 2, rect.top() + ( rect.height() - i ) / 2, i, i );
-  QPixmap pix = getPixmapFromQVariant( data->data() );
-  painter->drawPixmap( pixRec, pix );
-  }
+    static const int i = 16;
+    PropertyItem *data = modelIndexToData( index );
+    if ( data == 0 )
+        return ;
+    QRect rect = option.rect;
+    QRect pixRec = QRect( rect.left() + i / 2, rect.top() + ( rect.height() - i ) / 2, i, i );
+    QPixmap pix = getPixmapFromQVariant( data->data() );
+    painter->drawPixmap( pixRec, pix );
+}
 
 
 
 QPixmap PropertyRendererPixmap::getPixmapFromQVariant( const QVariant&px ) const {
-  switch ( px.type() ) {
-      case QVariant::Bitmap:
-      return px.value<QBitmap>();
-      case QVariant::Image:
-      return QPixmap::fromImage( px.value<QImage>() );
-      case QVariant::Pixmap:
-      return px.value<QPixmap>();
-      default:
-      return QPixmap();
+    switch ( px.type() ) {
+    case QVariant::Bitmap:
+        return px.value<QBitmap>();
+    case QVariant::Image:
+        return QPixmap::fromImage( px.value<QImage>() );
+    case QVariant::Pixmap:
+        return px.value<QPixmap>();
+    default:
+        return QPixmap();
     }
-  return QPixmap(); //<- on ne devrait jamais arriver la ;)
+    return QPixmap(); //<- on ne devrait jamais arriver la ;)
 
-  }
+}
 
 QSize PropertyRendererPixmap::sizeHint( const QStyleOptionViewItem & option, const QModelIndex &index ) {
-  return option.rect.size();
-  }
+    return option.rect.size();
+}

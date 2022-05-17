@@ -31,9 +31,8 @@
 #include "defaulttype/TypeChar.h"
 
 PropertyItemChar::PropertyItemChar( QString name, const QVariant &value, PropertyItem *parent )
-:PropertyItem(name,parent) {
- setData(value);
-
+    :PropertyItem(name,parent) {
+    setData(value);
 
 }
 

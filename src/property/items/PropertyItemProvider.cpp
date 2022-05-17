@@ -38,112 +38,110 @@
 #include "defaulttype/TypeColor.h"
 #include "defaulttype/TypePixmap.h"
 PropertyItem* PropertyItemProvider::fromQVariant( const QString &name, const QVariant&value, PropertyItem *parent ) const {
-  switch ( value.type() ) {
-      case QVariant::Invalid:
-      break;
-      case QVariant::BitArray:
-      break;
-      case QVariant::Bitmap :
-       return new PropertyItemPixmap( name, value, parent );
-      break;
-      case QVariant::Bool:
-      return new PropertyItemBool( name, value, parent );
-      case QVariant::Brush:
-      break;
-      case QVariant::ByteArray:
-      break;
-      case QVariant::Char:
-      break;
-      case QVariant::Color:
-      return new PropertyItemColor(name, value, parent );
-      case QVariant::Cursor:
-      return new PropertyItemCursor(name, value, parent );
-      case QVariant::Date:
-      break;
-      case QVariant::DateTime:
-      break;
-      case QVariant::Double:
-      break;
-      case QVariant::Font:
-      return new PropertyItemFont(name, value, parent );
-      case QVariant::Icon :
-         return new PropertyItemPixmap( name, value, parent );
-      break;
-      case QVariant::Image:
-         return new PropertyItemPixmap( name, value, parent );
-      break;
-      case QVariant::Int:
-      return new PropertyItemInt(name, value, parent );
-      case QVariant::KeySequence:
-      break;
-      case QVariant::Line:
-      break;
-      case QVariant::LineF:
-      break;
-      case QVariant::List:
-      break;
-      case QVariant::Locale:
-      break;
-      case QVariant::LongLong:
-      break;
-      case QVariant::Map:
-      break;
-      case QVariant::Matrix:
-      break;
-      case QVariant::Palette:
-      break;
-      case QVariant::Pen:
-      break;
-      case QVariant::Pixmap:
-         return new PropertyItemPixmap( name, value, parent );
-      break;
-      case QVariant::Point:
-      break;
-      case QVariant::PointF:
-      break;
-      case QVariant::Polygon :
-      break;
-      case QVariant::Rect:
-      return new PropertyItemRect(name, value, parent );
-      case QVariant::RectF:
-      break;
-      case QVariant::RegExp:
-      break;
-      case QVariant::Region:
-      break;
-      case QVariant::Size:
-      return new PropertyItemSize(name, value, parent );
-      case QVariant::SizeF:
-      break;
-      case QVariant::SizePolicy:
-      break;
-      case QVariant::String:
-      break;
-      case QVariant::StringList:
-      break;
-      case QVariant::TextFormat:
-      break;
-      case QVariant::TextLength:
-      break;
-      case QVariant::Time:
-      break;
-      case QVariant::UInt:
-      break;
-      case QVariant::ULongLong:
-      break;
-      case QVariant::Url:
-      break;
-      case QVariant::UserType :
-      break;
-      default:
-      break;
+    switch ( value.type() ) {
+    case QVariant::Invalid:
+        break;
+    case QVariant::BitArray:
+        break;
+    case QVariant::Bitmap :
+        return new PropertyItemPixmap( name, value, parent );
+        break;
+    case QVariant::Bool:
+        return new PropertyItemBool( name, value, parent );
+    case QVariant::Brush:
+        break;
+    case QVariant::ByteArray:
+        break;
+    case QVariant::Char:
+        break;
+    case QVariant::Color:
+        return new PropertyItemColor(name, value, parent );
+    case QVariant::Cursor:
+        return new PropertyItemCursor(name, value, parent );
+    case QVariant::Date:
+        break;
+    case QVariant::DateTime:
+        break;
+    case QVariant::Double:
+        break;
+    case QVariant::Font:
+        return new PropertyItemFont(name, value, parent );
+    case QVariant::Icon :
+        return new PropertyItemPixmap( name, value, parent );
+        break;
+    case QVariant::Image:
+        return new PropertyItemPixmap( name, value, parent );
+        break;
+    case QVariant::Int:
+        return new PropertyItemInt(name, value, parent );
+    case QVariant::KeySequence:
+        break;
+    case QVariant::Line:
+        break;
+    case QVariant::LineF:
+        break;
+    case QVariant::List:
+        break;
+    case QVariant::Locale:
+        break;
+    case QVariant::LongLong:
+        break;
+    case QVariant::Map:
+        break;
+    case QVariant::Matrix:
+        break;
+    case QVariant::Palette:
+        break;
+    case QVariant::Pen:
+        break;
+    case QVariant::Pixmap:
+        return new PropertyItemPixmap( name, value, parent );
+        break;
+    case QVariant::Point:
+        break;
+    case QVariant::PointF:
+        break;
+    case QVariant::Polygon :
+        break;
+    case QVariant::Rect:
+        return new PropertyItemRect(name, value, parent );
+    case QVariant::RectF:
+        break;
+    case QVariant::RegExp:
+        break;
+    case QVariant::Region:
+        break;
+    case QVariant::Size:
+        return new PropertyItemSize(name, value, parent );
+    case QVariant::SizeF:
+        break;
+    case QVariant::SizePolicy:
+        break;
+    case QVariant::String:
+        break;
+    case QVariant::StringList:
+        break;
+    case QVariant::TextFormat:
+        break;
+    case QVariant::TextLength:
+        break;
+    case QVariant::Time:
+        break;
+    case QVariant::UInt:
+        break;
+    case QVariant::ULongLong:
+        break;
+    case QVariant::Url:
+        break;
+    case QVariant::UserType :
+        break;
+    default:
+        break;
 
     }
 
-
-  return 0;
-
-  }
+    return 0;
+}
 
 
 

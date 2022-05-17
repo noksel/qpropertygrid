@@ -34,12 +34,10 @@ int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
 
+    // widget.setModel(model);
+    // widget.setItemDelegate(new PropertyDelegate());
 
-
-   // widget.setModel(model);
-    //widget.setItemDelegate(new PropertyDelegate());
-
- sampleForm m;
-m.show();
+    sampleForm m;
+    m.show();
     return app.exec();
 }

@@ -35,76 +35,76 @@
 
 PropertyDelegate::PropertyDelegate( Factory<> *delegateFactory, QObject * parent )
     : QItemDelegate( parent )
-, _factory( delegateFactory ) {
-  if ( _factory == 0 )
-    _factory = &PropertyDelegateFactory::instance();
+    , _factory( delegateFactory ) {
+    if ( _factory == 0 )
+        _factory = &PropertyDelegateFactory::instance();
 
-  }
+}
 
 void PropertyDelegate::paint( QPainter *painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const {
-  PropertyRenderer * render = getRendererFor( index );
-  if ( render == 0 )
-    return QItemDelegate::paint( painter, option, index );
-  render->paintProperty( painter, option, index );
-  }
+    PropertyRenderer * render = getRendererFor( index );
+    if ( render == 0 )
+        return QItemDelegate::paint( painter, option, index );
+    render->paintProperty( painter, option, index );
+}
 
 
 QSize PropertyDelegate::sizeHint( const QStyleOptionViewItem & option, const QModelIndex & index ) const {
-  PropertyRenderer * render = getRendererFor( index );
-  //if ( render == 0 )
-  return QItemDelegate::sizeHint( option, index );
-  return render->sizeHint( option, index );
-  }
+    PropertyRenderer * render = getRendererFor( index );
+    //if ( render == 0 )
+    return QItemDelegate::sizeHint( option, index );
+    return render->sizeHint( option, index );
+}
 
 QWidget * PropertyDelegate::createEditor ( QWidget * parent, const QStyleOptionViewItem & option, const QModelIndex & index ) const {
-  /* PropertyEditor * edit = getEditorFor( index );
+    /* PropertyEditor * edit = getEditorFor( index );
    if ( edit == 0 )*/
-  return QItemDelegate::createEditor( parent, option, index );
-  //return edit->createEditor( parent, option, index );
-  }
+    return QItemDelegate::createEditor( parent, option, index );
+    //return edit->createEditor( parent, option, index );
+}
 
 
 
 void PropertyDelegate::updateEditorGeometry ( QWidget * editor, const QStyleOptionViewItem & option, const QModelIndex & index ) const {
-  //PropertyEditor * edit = getEditorFor( index );
-  //if ( edit == 0 || !edit->provideUpdateGeometry() )
-  return QItemDelegate::updateEditorGeometry( editor, option, index );
-  //edit->updateEditorGeometry( editor, option, index );
-  }
+    //PropertyEditor * edit = getEditorFor( index );
+    //if ( edit == 0 || !edit->provideUpdateGeometry() )
+    return QItemDelegate::updateEditorGeometry( editor, option, index );
+    //edit->updateEditorGeometry( editor, option, index );
+}
 
 void PropertyDelegate::setModelData ( QWidget * editor, QAbstractItemModel * model, const QModelIndex & index ) const {
 
-  //PropertyEditor * edit = getEditorFor( index );
-  //if ( edit == 0 )
-  return QItemDelegate::setModelData( editor, model, index );
-  //return edit->setModelData( editor, model, index );
-  }
+    //PropertyEditor * edit = getEditorFor( index );
+    //if ( edit == 0 )
+    return QItemDelegate::setModelData( editor, model, index );
+    //return edit->setModelData( editor, model, index );
+}
 
 void PropertyDelegate::setEditorData( QWidget * editor, const QModelIndex & index ) const {
 
 
-  //PropertyEditor * edit = getEditorFor( index );
-  //if ( edit == 0 )
-  return QItemDelegate::setEditorData( editor, index );
-  //return edit->setEditorData( editor, index );
-  }
+    //PropertyEditor * edit = getEditorFor( index );
+    //if ( edit == 0 )
+    return QItemDelegate::setEditorData( editor, index );
+    //return edit->setEditorData( editor, index );
+}
 
 PropertyItem * PropertyDelegate::toItem( const QModelIndex & index ) const {
-  if ( !index.isValid() )
-    return 0;
-  return qobject_cast<PropertyItem *>( ( QObject* ) index.internalPointer() );
-  }
+    if ( !index.isValid() )
+        return 0;
+    return qobject_cast<PropertyItem *>( ( QObject* ) index.internalPointer() );
+}
 
 
 PropertyRenderer *PropertyDelegate::getRendererFor( const QModelIndex & index ) const {
-  if ( _factory == 0 )
-    return 0;
-  PropertyItem * data = toItem( index );
-  if ( data == 0 )
-    return 0;
-  QString renderer = ( index.column() == 0 ) ? data->nameRenderer() : data->valueRenderer();
-  return ( renderer == "" ) ? 0 : _factory->get<PropertyRenderer>( renderer );
-  }
+    if ( _factory == 0 )
+        return 0;
+    PropertyItem * data = toItem( index );
+    if ( data == 0 )
+        return 0;
+    QString renderer = ( index.column() == 0 ) ? data->nameRenderer() : data->valueRenderer();
+    return ( renderer == "" ) ? 0 : _factory->get<PropertyRenderer>( renderer );
+}
 
 /*
 

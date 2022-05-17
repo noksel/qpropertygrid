@@ -37,28 +37,28 @@ const QString PropertyRendererGroup::K_ID="RENDER_GROUP_DEF";
 PropertyRendererGroup::PropertyRendererGroup( QObject *parent )
     : PropertyRenderer( parent ) {
 
-  }
+}
 
 void PropertyRendererGroup::paintProperty ( QPainter * painter, const QStyleOptionViewItem &option, const QModelIndex &index  ) {
-static const int i = 9;
-PropertyItem *data=modelIndexToData(index);
-        if(data==0)
-          return;
-        QStyleOptionViewItem opt=option;
-        QRect r = opt.rect;
-        QRect textrect =r;
-//QRect(r.left() + i*2, r.top(), r.width() - ((5*i)/2), r.height());
-        opt.font.setBold( true);
-        QString text = opt.fontMetrics.elidedText(data->name(), Qt::ElideMiddle, textrect.width());
-        painter->save();
-        painter->setFont( opt.font);
-        painter->drawText(textrect,text,QTextOption( Qt::AlignLeft));
-        painter->restore();
+    static const int i = 9;
+    PropertyItem *data=modelIndexToData(index);
+    if(data==0)
+        return;
+    QStyleOptionViewItem opt=option;
+    QRect r = opt.rect;
+    QRect textrect =r;
+    //QRect(r.left() + i*2, r.top(), r.width() - ((5*i)/2), r.height());
+    opt.font.setBold( true);
+    QString text = opt.fontMetrics.elidedText(data->name(), Qt::ElideMiddle, textrect.width());
+    painter->save();
+    painter->setFont( opt.font);
+    painter->drawText(textrect,text,QTextOption( Qt::AlignLeft));
+    painter->restore();
 
 }
 
 
 QSize PropertyRendererGroup::sizeHint( const QStyleOptionViewItem & option, const QModelIndex &index  ) {
-return option.rect.size();
-  }
+    return option.rect.size();
+}
 

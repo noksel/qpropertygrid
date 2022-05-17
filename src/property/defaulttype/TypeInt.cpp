@@ -31,9 +31,8 @@
 #include "defaulttype/TypeInt.h"
 
 PropertyItemInt::PropertyItemInt( QString name, const QVariant &value, PropertyItem *parent )
-:PropertyItem(name,parent) {
- setData(value);
-
+    :PropertyItem(name,parent) {
+    setData(value);
 
 }
 

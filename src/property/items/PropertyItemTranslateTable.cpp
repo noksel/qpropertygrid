@@ -41,8 +41,7 @@ PropertyItemTranslateTable::PropertyItemTranslateTable()
     , _valueToKeyPolicy( EPass )
 
 {
-setEnable( true);
-
+    setEnable( true);
 }
 
 
@@ -53,116 +52,115 @@ PropertyItemTranslateTable::PropertyItemTranslateTable( const PropertyItemTransl
     , _defaultKey( other._defaultKey )
     , _keyToValuePolicy( other._keyToValuePolicy )
     , _valueToKeyPolicy( other._valueToKeyPolicy )
-    {}
+{}
 PropertyItemTranslateTable::~PropertyItemTranslateTable() {}
 
 
 
 QVariant PropertyItemTranslateTable::checkoutValue( const QVariant& value ,bool internal) const {
-qDebug()<<"cherche a traduire "<<value;
+    qDebug()<<"cherche a traduire "<<value;
 
-
-  for ( int i = 0;i < _translation.size();i++ )
-    if ( _translation[ i ].value == value )
-      return _translation[ i ].key;
-  switch ( _valueToKeyPolicy ) {
-      case EInvalid:
-      return QVariant();
-      case EPass:
-      return value;
-      case EReturnDefault:
-      return defaultKey();
-      default:
-      return QVariant();
+    for ( int i = 0;i < _translation.size();i++ )
+        if ( _translation[ i ].value == value )
+            return _translation[ i ].key;
+    switch ( _valueToKeyPolicy ) {
+    case EInvalid:
+        return QVariant();
+    case EPass:
+        return value;
+    case EReturnDefault:
+        return defaultKey();
+    default:
+        return QVariant();
     }
-  //normalement on n'arrive jamais la, mais bon
-  return QVariant();
-  }
+    //normalement on n'arrive jamais la, mais bon
+    return QVariant();
+}
 
 QVariant PropertyItemTranslateTable::checkinValue( const QVariant& key ) const {
-  for ( int i = 0;i < _translation.size();i++ )
-    if ( _translation[ i ].key == key )
-      return _translation[ i ].value;
-  switch ( _keyToValuePolicy ) {
-      case EInvalid:
-      return QVariant();
-      case EPass:
-      return key;
-      case EReturnDefault:
-      return defaultValue();
-      default:
-      return QVariant();
+    for ( int i = 0;i < _translation.size();i++ )
+        if ( _translation[ i ].key == key )
+            return _translation[ i ].value;
+    switch ( _keyToValuePolicy ) {
+    case EInvalid:
+        return QVariant();
+    case EPass:
+        return key;
+    case EReturnDefault:
+        return defaultValue();
+    default:
+        return QVariant();
     }
-  //normalement on n'arrive jamais la, mais bon
-  return QVariant();
-  }
+    //normalement on n'arrive jamais la, mais bon
+    return QVariant();
+}
 
 
 void PropertyItemTranslateTable::addToTable( const QMetaEnum&enumToAdd ) {
-  for ( int i = 0;i < enumToAdd.keyCount();i++ )
-    addToTable( enumToAdd.value( i ), enumToAdd.key( i ) );
-  }
+    for ( int i = 0;i < enumToAdd.keyCount();i++ )
+        addToTable( enumToAdd.value( i ), enumToAdd.key( i ) );
+}
 void PropertyItemTranslateTable::addToTable( const QVariant &value, const QVariant &key ) {
-  qDebug() << "Adding to table " << value << " -> " << key;
-  for ( int i = 0;i < _translation.size();i++ )
-    if ( _translation[ i ].value == value ) {
-      _translation[ i ].key = key;
-      return ;
-      }
-  SValKey val;
-  val.key = key;
-  val.value = value;
-  _translation.append( val );
-  }
+    qDebug() << "Adding to table " << value << " -> " << key;
+    for ( int i = 0;i < _translation.size();i++ )
+        if ( _translation[ i ].value == value ) {
+            _translation[ i ].key = key;
+            return ;
+        }
+    SValKey val;
+    val.key = key;
+    val.value = value;
+    _translation.append( val );
+}
 
 bool PropertyItemTranslateTable::hasDefaultValue() const {
-  return _defaultValue.isValid();
-  }
+    return _defaultValue.isValid();
+}
 void PropertyItemTranslateTable::setDefaultValue( const QVariant&defaultValue ) {
-  _defaultValue = defaultValue;
-  }
+    _defaultValue = defaultValue;
+}
 QVariant PropertyItemTranslateTable::defaultValue() const {
-  return _defaultValue;
-  }
+    return _defaultValue;
+}
 
 bool PropertyItemTranslateTable::hasDefaultKey() const {
 
-  return _defaultKey.isValid();
-  }
+    return _defaultKey.isValid();
+}
 void PropertyItemTranslateTable::setDefaultKey( const QVariant&defaultKey ) {
-  _defaultKey = defaultKey;
-  }
+    _defaultKey = defaultKey;
+}
 
 QVariant PropertyItemTranslateTable::defaultKey() const {
-  return _defaultKey;
-  }
+    return _defaultKey;
+}
 
 void PropertyItemTranslateTable::removeValue( const QVariant &value ) {
-  for ( int i = 0;i < _translation.size();i++ )
-    if ( _translation[ i ].value == value ) {
-      _translation.removeAt( i );
-      return ;
-      }
-  }
+    for ( int i = 0;i < _translation.size();i++ )
+        if ( _translation[ i ].value == value ) {
+            _translation.removeAt( i );
+            return ;
+        }
+}
 
 bool PropertyItemTranslateTable::hasValue( const QVariant &value ) {
-  for ( int i = 0;i < _translation.size();i++ )
-    if ( _translation[ i ].value == value )
-      return true;
-  return false;
-  }
+    for ( int i = 0;i < _translation.size();i++ )
+        if ( _translation[ i ].value == value )
+            return true;
+    return false;
+}
 void PropertyItemTranslateTable::setKeyToValuePolicy( translationPolicy policy ) {
-  _keyToValuePolicy = policy;
-  }
+    _keyToValuePolicy = policy;
+}
 int PropertyItemTranslateTable::keyToValuePolicy() const {
-  return _keyToValuePolicy;
-  }
+    return _keyToValuePolicy;
+}
 void PropertyItemTranslateTable::setValueToKeyPolicy( translationPolicy policy ) {
-  _valueToKeyPolicy = policy;
-  }
+    _valueToKeyPolicy = policy;
+}
 int PropertyItemTranslateTable::valueToKeyPolicy() const {
-  return _valueToKeyPolicy;
-  }
+    return _valueToKeyPolicy;
+}
 
 ////////////////////////////////:
 
@@ -174,54 +172,54 @@ PropertyItemFlagTable::PropertyItemFlagTable( const PropertyItemFlagTable&other 
 PropertyItemFlagTable::~PropertyItemFlagTable() {}
 
 QVariant PropertyItemFlagTable::checkoutValue( const QVariant& value,bool internal ) const {
-  QString retValue = "";
-  if ( !value.canConvert( QVariant::UInt ) )
-    return QVariant();
-  unsigned int ivalue = value.toUInt();
-  for ( int i = 0;i < _translation.size();i++ ) {
-    if ( !_translation[ i ].value.canConvert( QVariant::UInt ) )
-      continue;
-    if ( ivalue & _translation[ i ].value.toUInt() && _translation[ i ].key.canConvert( QVariant::String ) ) {
-      if ( retValue.length() )
-        retValue += " | ";
-      retValue += _translation[ i ].key.toString();
-      }
-    return retValue;
+    QString retValue = "";
+    if ( !value.canConvert( QVariant::UInt ) )
+        return QVariant();
+    unsigned int ivalue = value.toUInt();
+    for ( int i = 0;i < _translation.size();i++ ) {
+        if ( !_translation[ i ].value.canConvert( QVariant::UInt ) )
+            continue;
+        if ( ivalue & _translation[ i ].value.toUInt() && _translation[ i ].key.canConvert( QVariant::String ) ) {
+            if ( retValue.length() )
+                retValue += " | ";
+            retValue += _translation[ i ].key.toString();
+        }
+        return retValue;
     }
 
 
 
-  }
+}
 
 QVariant PropertyItemFlagTable::checkinValue( const QVariant&key ) const {
-  if ( !key.canConvert( QVariant::String ) )
-    return QVariant();
-  QStringList lst = key.toString().split ( "|", QString::SkipEmptyParts );
-  unsigned int value = 0;
-  for ( int i = 0;i < lst.size();i++ ) {
-    QString flg = lst[ i ].trimmed();
-    bool found = false;
-    for ( int j = 0;j < _translation.size();j++ ) {
-      if ( _translation[ j ].key == flg && _translation[ j ].value.canConvert( QVariant::UInt ) ) {
-        value |= _translation[ j ].value.toUInt();
-        found = true;
-        break;
+    if ( !key.canConvert( QVariant::String ) )
+        return QVariant();
+    QStringList lst = key.toString().split ( "|", QString::SkipEmptyParts );
+    unsigned int value = 0;
+    for ( int i = 0;i < lst.size();i++ ) {
+        QString flg = lst[ i ].trimmed();
+        bool found = false;
+        for ( int j = 0;j < _translation.size();j++ ) {
+            if ( _translation[ j ].key == flg && _translation[ j ].value.canConvert( QVariant::UInt ) ) {
+                value |= _translation[ j ].value.toUInt();
+                found = true;
+                break;
+            }
         }
-      }
-    if ( !found )
-      return QVariant();
+        if ( !found )
+            return QVariant();
     }
-  return value;
+    return value;
 
-  }
+}
 
 
 
 void PropertyItemFlagTable::addToTable( const QVariant &value, const QVariant &key ) {
-  PropertyItemTranslateTable::addToTable( value, key );
-  qSort( _translation );
+    PropertyItemTranslateTable::addToTable( value, key );
+    qSort( _translation );
 
-  }
+}
 
 
 

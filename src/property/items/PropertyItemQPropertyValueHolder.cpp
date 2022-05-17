@@ -36,71 +36,68 @@
 PropertyItemQPropertyValueHolder::PropertyItemQPropertyValueHolder( QMetaProperty property, QObject *object )
     : PropertyItemValueHolder()
     , _meta( property )
-, _object( object ) {
+    , _object( object ) {
 
-
-  if ( _meta.isEnumType() ) {
-   PropertyItemTranslateTable *table=new PropertyItemTranslateTable();
-    table->addToTable( _meta.enumerator() );
-    table->setValid( true );
-    setValueChecker(table);
+    if ( _meta.isEnumType() ) {
+        PropertyItemTranslateTable *table=new PropertyItemTranslateTable();
+        table->addToTable( _meta.enumerator() );
+        table->setValid( true );
+        setValueChecker(table);
     }
 
-  if ( _meta.isFlagType() ) {
-    PropertyItemFlagTable *table=new PropertyItemFlagTable();
-    table->addToTable( _meta.enumerator() );
-    table->setValid( true );
-    setValueChecker(table);
+    if ( _meta.isFlagType() ) {
+        PropertyItemFlagTable *table=new PropertyItemFlagTable();
+        table->addToTable( _meta.enumerator() );
+        table->setValid( true );
+        setValueChecker(table);
     }
-
-
-  }
+}
 
 PropertyItemQPropertyValueHolder::PropertyItemQPropertyValueHolder( const PropertyItemQPropertyValueHolder& copy )
     : PropertyItemValueHolder()
     , _meta( copy._meta )
-, _object( copy._object ) {
-  }
+    , _object( copy._object ) {
+}
 PropertyItemQPropertyValueHolder::~PropertyItemQPropertyValueHolder() {}
 void PropertyItemQPropertyValueHolder::set( const PropertyItem *item, const QVariant &value ) {
-  qDebug() << item->name() << " try write";
-  if ( _object && _meta.isWritable() )
-    _meta.write( _object, value );
-  else
-    qDebug() << item->name() << " Is not writable";
-  }
+    qDebug() << item->name() << " try write";
+    if ( _object && _meta.isWritable() )
+        _meta.write( _object, value );
+    else
+        qDebug() << item->name() << " Is not writable";
+}
 
 
 QVariant PropertyItemQPropertyValueHolder::get( const PropertyItem *item ) {
-  if ( _object )
-    return _meta.read( _object );
-  return QVariant();
-  }
+    if ( _object )
+        return _meta.read( _object );
+    return QVariant();
+}
 
 
 
 QVariant PropertyItemQPropertyValueHolder::getForRenderer( const PropertyItem *item ) {
 
-  if ( item == 0 )
-    return "";
-  if ( item->isAGroup() ) {
-    QStringList lst;
-    for ( int i = 0;i < item->childCount();i++ ) {
-      PropertyItem *child = item->childAt( i );
-      if ( child == 0 )
-        continue;
-      if ( !child->isGroupCollectable() )
-        continue;
-      QVariant val = child ->data( PropertyItem::valueToRender );
-      if ( val.canConvert( QVariant::String ) )
-        lst .push_back( val.toString() );
-      else
-        lst .push_back( "..." );
-      }
-    return QString( "[ " ) + lst.join( " ," ) + " ]";
+    if ( item == 0 )
+        return "";
+    if ( item->isAGroup() ) {
+        QStringList lst;
+        for ( int i = 0;i < item->childCount();i++ ) {
+            PropertyItem *child = item->childAt( i );
+            if ( child == 0 )
+                continue;
+            if ( !child->isGroupCollectable() )
+                continue;
+            QVariant val = child ->data( PropertyItem::valueToRender );
+            if ( val.canConvert( QVariant::String ) )
+                lst .push_back( val.toString() );
+            else
+                lst .push_back( "..." );
+        }
+        return QString( "[ " ) + lst.join( " ," ) + " ]";
     }
 
-  return PropertyItemValueHolder::getForRenderer( item );
+    return PropertyItemValueHolder::getForRenderer( item );
 
-  }
+}
 

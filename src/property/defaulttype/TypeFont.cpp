@@ -36,79 +36,79 @@
 #include <QDebug>
 PropertyItemFont::PropertyItemFont( QString name, const QVariant &value, PropertyItem *parent )
     : PropertyItemGroup( name, parent ) {
-  setData( PropertyItem::valueRole, value );
-  QFont ft = value.value<QFont>();
-  PropertyItem *it; /*=new PropertyItemString("Family",ft.family(),this);*/
-  it = new PropertyItemInt( "Size", ft.pointSize(), this );
-  it->setMeta( true );
-  connect( it, SIGNAL( dataChanged( QVariant ) ), this, SLOT( onSizeChange( QVariant ) ) );
-  it = new PropertyItemBool( "Bold", ft.bold(), this );
-  it->setMeta( true );
-  it->setGroupCollectable(false);
-  connect( it, SIGNAL( dataChanged( QVariant ) ), this, SLOT( onBoldChange( QVariant ) ) );
-  it = new PropertyItemBool( "Italic", ft.italic(), this );
-  it->setMeta( true );
-it->setGroupCollectable(false);
-  connect( it, SIGNAL( dataChanged( QVariant ) ), this, SLOT( onItalicChange( QVariant ) ) );
-  it = new PropertyItemBool( "Underline", ft.underline(), this );
-  it->setMeta( true );
-  it->setGroupCollectable(false);
-  connect( it, SIGNAL( dataChanged( QVariant ) ), this, SLOT( onUnderlineChange( QVariant ) ) );
-  it = new PropertyItemBool( "Strikeout", ft.strikeOut(), this );
-  it->setMeta( true );
-  it->setGroupCollectable(false);
-  connect( it, SIGNAL( dataChanged( QVariant ) ), this, SLOT( onStrikeoutChange( QVariant ) ) );
-  it = new PropertyItemBool( "Kerning", ft.kerning(), this );
-  it->setMeta( true );
-  it->setGroupCollectable(false);
-  connect( it, SIGNAL( dataChanged( QVariant ) ), this, SLOT( onKerningChange( QVariant ) ) );
-  it = new PropertyItemBool( "Antialiasing", ( ft.styleStrategy() == QFont::PreferAntialias ) , this );
-  it->setMeta( true );
-  it->setGroupCollectable(false);
-  connect( it, SIGNAL( dataChanged( QVariant ) ), this, SLOT( onAntialiasChange( QVariant ) ) );
-  }
+    setData( PropertyItem::valueRole, value );
+    QFont ft = value.value<QFont>();
+    PropertyItem *it; /*=new PropertyItemString("Family",ft.family(),this);*/
+    it = new PropertyItemInt( "Size", ft.pointSize(), this );
+    it->setMeta( true );
+    connect( it, SIGNAL( dataChanged( QVariant ) ), this, SLOT( onSizeChange( QVariant ) ) );
+    it = new PropertyItemBool( "Bold", ft.bold(), this );
+    it->setMeta( true );
+    it->setGroupCollectable(false);
+    connect( it, SIGNAL( dataChanged( QVariant ) ), this, SLOT( onBoldChange( QVariant ) ) );
+    it = new PropertyItemBool( "Italic", ft.italic(), this );
+    it->setMeta( true );
+    it->setGroupCollectable(false);
+    connect( it, SIGNAL( dataChanged( QVariant ) ), this, SLOT( onItalicChange( QVariant ) ) );
+    it = new PropertyItemBool( "Underline", ft.underline(), this );
+    it->setMeta( true );
+    it->setGroupCollectable(false);
+    connect( it, SIGNAL( dataChanged( QVariant ) ), this, SLOT( onUnderlineChange( QVariant ) ) );
+    it = new PropertyItemBool( "Strikeout", ft.strikeOut(), this );
+    it->setMeta( true );
+    it->setGroupCollectable(false);
+    connect( it, SIGNAL( dataChanged( QVariant ) ), this, SLOT( onStrikeoutChange( QVariant ) ) );
+    it = new PropertyItemBool( "Kerning", ft.kerning(), this );
+    it->setMeta( true );
+    it->setGroupCollectable(false);
+    connect( it, SIGNAL( dataChanged( QVariant ) ), this, SLOT( onKerningChange( QVariant ) ) );
+    it = new PropertyItemBool( "Antialiasing", ( ft.styleStrategy() == QFont::PreferAntialias ) , this );
+    it->setMeta( true );
+    it->setGroupCollectable(false);
+    connect( it, SIGNAL( dataChanged( QVariant ) ), this, SLOT( onAntialiasChange( QVariant ) ) );
+}
 
 
 void PropertyItemFont::onSizeChange( QVariant newValue ) {
 
-  QFont ft = data().value<QFont>();
-  ft.setPointSize( newValue.toInt( ) );
-  setData( PropertyItem::valueRole, ft );
+    QFont ft = data().value<QFont>();
+    ft.setPointSize( newValue.toInt( ) );
+    setData( PropertyItem::valueRole, ft );
 
-  }
+}
 void PropertyItemFont::onBoldChange( QVariant newValue ) {
-  QFont ft = data().value<QFont>();
-  ft.setBold( newValue.toBool() );
-  setData( PropertyItem::valueRole, ft );
-  }
+    QFont ft = data().value<QFont>();
+    ft.setBold( newValue.toBool() );
+    setData( PropertyItem::valueRole, ft );
+}
 void PropertyItemFont::onItalicChange( QVariant newValue ) {
-  QFont ft = data().value<QFont>();
-  ft.setItalic( newValue.toBool() );
-  setData( PropertyItem::valueRole, ft );
-  }
+    QFont ft = data().value<QFont>();
+    ft.setItalic( newValue.toBool() );
+    setData( PropertyItem::valueRole, ft );
+}
 void PropertyItemFont::onUnderlineChange( QVariant newValue ) {
-  QFont ft = data().value<QFont>();
-  ft.setUnderline( newValue.toBool() );
-  setData( PropertyItem::valueRole, ft );
-  }
+    QFont ft = data().value<QFont>();
+    ft.setUnderline( newValue.toBool() );
+    setData( PropertyItem::valueRole, ft );
+}
 void PropertyItemFont::onStrikeoutChange( QVariant newValue ) {
-  QFont ft = data().value<QFont>();
-  ft.setStrikeOut( newValue.toBool() );
-  setData( PropertyItem::valueRole, ft );
-  }
+    QFont ft = data().value<QFont>();
+    ft.setStrikeOut( newValue.toBool() );
+    setData( PropertyItem::valueRole, ft );
+}
 void PropertyItemFont::onKerningChange( QVariant newValue ) {
-  QFont ft = data().value<QFont>();
-  ft.setKerning( newValue.toBool() );
-  setData( PropertyItem::valueRole, ft );
-  }
+    QFont ft = data().value<QFont>();
+    ft.setKerning( newValue.toBool() );
+    setData( PropertyItem::valueRole, ft );
+}
 void PropertyItemFont::onAntialiasChange( QVariant newValue ) {
-  QFont ft = data().value<QFont>();
-  if ( newValue.toBool() )
-    ft.setStyleStrategy( QFont::PreferAntialias );
-  else
-    ft.setStyleStrategy( QFont::NoAntialias );
-  setData( PropertyItem::valueRole, ft );
-  }
+    QFont ft = data().value<QFont>();
+    if ( newValue.toBool() )
+        ft.setStyleStrategy( QFont::PreferAntialias );
+    else
+        ft.setStyleStrategy( QFont::NoAntialias );
+    setData( PropertyItem::valueRole, ft );
+}
 
 
 

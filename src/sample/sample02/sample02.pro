@@ -4,7 +4,7 @@
 # Target is an application:  
 
 QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++17
 
 # You can make your code fail to compile if it uses deprecated APIs.
@@ -14,8 +14,8 @@ CONFIG += c++17
 
 
 #TARGETDEPS += ../../../src/property/libqproperty.a
-#LIBS += ../../../src/property/libqproperty.a
-INCLUDEPATH += ../../../src/property 
+LIBS += ../../../src/property/debug/libqproperty.a
+INCLUDEPATH += ../../../src/property
 #CONFIG += debug \
 #          warn_on
 TEMPLATE = app 

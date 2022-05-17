@@ -33,8 +33,8 @@
 #include <QDebug>
 
 PropertyModel::PropertyModel( QObject * parent  )
-        :QAbstractItemModel(parent)
-        ,_root(new PropertyItem("__ROOT"))
+    :QAbstractItemModel(parent)
+    ,_root(new PropertyItem("__ROOT"))
 {
     _root->setVisible(false);
 }
@@ -75,8 +75,8 @@ bool PropertyModel::setData ( const QModelIndex & index, const QVariant & value,
     PropertyItem *item = static_cast<PropertyItem*>(index.internalPointer());
     if(!item)
         return false;
-if(role==Qt::EditRole)
-    role=PropertyItem::valueRole;
+    if(role==Qt::EditRole)
+        role=PropertyItem::valueRole;
 
     item->setData( role,value);
     if(role==PropertyItem::valueRole)
@@ -163,7 +163,7 @@ QVariant PropertyModel::headerData(int section, Qt::Orientation orientation,
 
 
 PropertyItem* PropertyModel::add
-    (PropertyItem* item)
+(PropertyItem* item)
 {
     if(!item)
         return item;

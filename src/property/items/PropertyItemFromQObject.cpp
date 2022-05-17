@@ -40,71 +40,65 @@
 
 PropertyItemFromQObject::PropertyItemFromQObject( Factory<>*fact, QObject *parent )
     : QObject( parent )
-,_skipRO(true)
-, _itemFactory( fact ) {}
+    ,_skipRO(true)
+    , _itemFactory( fact ) {}
 
 
 void PropertyItemFromQObject::importPropertyForClass( const QObject *object, const QMetaObject *metaobject, PropertyItem*parent ) {
-  if ( !metaobject )
-    return ;
-  importPropertyForClass( object, metaobject->superClass(), parent );
-  PropertyItem *current = new PropertyItemSection( metaobject->className(), parent );
-  for ( int i = 0;i < metaobject->propertyCount();i++ ) {
-    QMetaProperty qmprop = metaobject->property( i );
-    //on passe les proprietes aussi presentes dans la classe mere
-    if ( metaobject->superClass() != 0 && metaobject->superClass() ->indexOfProperty( qmprop.name() ) > -1 )
-      continue;
-    //on passe aussi les non storable -> je comprends pas comment on s'en sert
-    if ( !qmprop.isStored() )
-      continue;
-    buildPropertyItem( object, qmprop, current );
+    if ( !metaobject )
+        return ;
+    importPropertyForClass( object, metaobject->superClass(), parent );
+    PropertyItem *current = new PropertyItemSection( metaobject->className(), parent );
+    for ( int i = 0;i < metaobject->propertyCount();i++ ) {
+        QMetaProperty qmprop = metaobject->property( i );
+        //on passe les proprietes aussi presentes dans la classe mere
+        if ( metaobject->superClass() != 0 && metaobject->superClass() ->indexOfProperty( qmprop.name() ) > -1 )
+            continue;
+        //on passe aussi les non storable -> je comprends pas comment on s'en sert
+        if ( !qmprop.isStored() )
+            continue;
+        buildPropertyItem( object, qmprop, current );
 
     }
 
-  }
+}
 
 PropertyItem* PropertyItemFromQObject::buildPropertyItem( const QObject *object, QMetaProperty &qmprop, PropertyItem *parent ) {
-  PropertyItem * prop = 0;
-if(!qmprop.isWritable()&&_skipRO)
+    PropertyItem * prop = 0;
+    if(!qmprop.isWritable()&&_skipRO)
         return prop;
-  if ( _itemFactory && qmprop.read( object ).isValid()) {
-    QString key = qmprop.read( object ).typeName();
-    PropertyItemProvider *itemProvider = _itemFactory->get
-                                         <PropertyItemProvider>( key );
-    if ( itemProvider == 0 )   //on tente de recuperer le provider par defaut
-      itemProvider = _itemFactory->get
-                     <PropertyItemProvider>( PropertyItemDefaultFactory::K_DEFAULT_KEY );
-    if ( itemProvider != 0 )
-      prop = itemProvider->fromQVariant( qmprop.name(), qmprop.read( object ), parent );
+    if ( _itemFactory && qmprop.read( object ).isValid()) {
+        QString key = qmprop.read( object ).typeName();
+        PropertyItemProvider *itemProvider = _itemFactory->get
+                <PropertyItemProvider>( key );
+        if ( itemProvider == 0 )   //on tente de recuperer le provider par defaut
+            itemProvider = _itemFactory->get
+                    <PropertyItemProvider>( PropertyItemDefaultFactory::K_DEFAULT_KEY );
+        if ( itemProvider != 0 )
+            prop = itemProvider->fromQVariant( qmprop.name(), qmprop.read( object ), parent );
     }
-  //si 0 c'est que la creation depuis la factory a echoue
-  if ( prop == 0 ) {
-    //on cree par defaut
-    prop = new PropertyItem( qmprop.name(), parent );
-    prop->setData( qmprop.read( object ) );
+    //si 0 c'est que la creation depuis la factory a echoue
+    if ( prop == 0 ) {
+        //on cree par defaut
+        prop = new PropertyItem( qmprop.name(), parent );
+        prop->setData( qmprop.read( object ) );
     }
-
-
-prop->setValueHolder( new PropertyItemQPropertyValueHolder(qmprop,const_cast<QObject*>(object)));
-
-
-
-  return prop;
-
-  }
+    prop->setValueHolder( new PropertyItemQPropertyValueHolder(qmprop,const_cast<QObject*>(object)));
+    return prop;
+}
 
 
 PropertyItem* PropertyItemFromQObject::importFrom( const QObject *obj,bool skipReadOnly,PropertyItem*parent, bool createSection ) {
-_skipRO=skipReadOnly;
- if ( obj == 0 )
+    _skipRO=skipReadOnly;
+    if ( obj == 0 )
+        return parent;
+    if ( parent == 0 )
+        createSection = true;
+    if ( createSection )
+        parent = new PropertyItemSection( obj->objectName(), parent );
+    importPropertyForClass( obj, obj->metaObject(), parent );
     return parent;
-  if ( parent == 0 )
-    createSection = true;
-  if ( createSection )
-    parent = new PropertyItemSection( obj->objectName(), parent );
-  importPropertyForClass( obj, obj->metaObject(), parent );
-  return parent;
-  }
+}
 
 
 
