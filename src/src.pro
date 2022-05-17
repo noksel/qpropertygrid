@@ -5,6 +5,6 @@
 
 SUBDIRS += property \
            sample 
-CONFIG += release \
-warn_on
+#CONFIG += release \
+#warn_on
 TEMPLATE = subdirs
