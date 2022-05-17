@@ -37,7 +37,7 @@
 
 class PropertyItemInt : public PropertyItem
 {
-        Q_OBJECT;
+        Q_OBJECT
 public:
         PropertyItemInt(QString name,const QVariant &value=QVariant(),PropertyItem *parent=0);
 

@@ -36,7 +36,7 @@
 
 class PropertyItemPixmap : public PropertyItem
 {
-        Q_OBJECT;
+        Q_OBJECT
 public:
         PropertyItemPixmap(QString name,const QVariant &value=QVariant(),PropertyItem *parent=0);
 
@@ -45,7 +45,7 @@ public:
 
 class PropertyRendererPixmap : public PropertyRenderer
 {
-Q_OBJECT;
+Q_OBJECT
   protected:
     QPixmap getPixmapFromQVariant(const QVariant&px)const;
 public:

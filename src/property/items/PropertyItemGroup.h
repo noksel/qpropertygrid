@@ -46,7 +46,7 @@ virtual QVariant getForRenderer(const PropertyItem *item );
 
 class PropertyItemGroup : public PropertyItem
 {
-        Q_OBJECT;
+        Q_OBJECT
 public:
         PropertyItemGroup(QString name,PropertyItem *parent=0);
 

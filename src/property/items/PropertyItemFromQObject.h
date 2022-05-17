@@ -34,7 +34,7 @@
 class PropertyItem;
 class PropertyItemFromQObject : public QObject {
 
-    Q_OBJECT;
+    Q_OBJECT
   protected:
         bool _skipRO;
     Factory<>*_itemFactory;

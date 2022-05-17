@@ -36,7 +36,7 @@
 
 class PropertyItemSize : public PropertyItemGroup
 {
-        Q_OBJECT;
+        Q_OBJECT
 public:
         PropertyItemSize(QString name,const QVariant &value=QVariant(),PropertyItem *parent=0);
 

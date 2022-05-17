@@ -37,7 +37,7 @@
 #include <QCursor>
 class PropertyItemCursor : public PropertyItemGroup
 {
-        Q_OBJECT;
+        Q_OBJECT
 public:
         PropertyItemCursor(QString name,const QVariant &value=QVariant(),PropertyItem *parent=0);
 
@@ -49,7 +49,7 @@ public slots:
 
 class PropertyRendererCursor : public PropertyRenderer
 {
-Q_OBJECT;
+Q_OBJECT
 
 public:
         PropertyRendererCursor(QObject *parent=0);

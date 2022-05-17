@@ -35,7 +35,7 @@
 #include "delegate/PropertyRenderer.h"
 
 class PropertyItemFont : public PropertyItemGroup {
-    Q_OBJECT;
+    Q_OBJECT
   public:
     PropertyItemFont( QString name, const QVariant &value = QVariant(), PropertyItem *parent = 0 );
 

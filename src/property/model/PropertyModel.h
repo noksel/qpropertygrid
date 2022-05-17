@@ -36,7 +36,7 @@
 class PropertyItem;
 class PropertyModel : public QAbstractItemModel
 {
-    Q_OBJECT;
+    Q_OBJECT
     PropertyItem*_root;
 public:
     PropertyModel( QObject * parent = 0 );

@@ -34,7 +34,7 @@
 
 class PropertyRendererSection : public PropertyRenderer
 {
-Q_OBJECT;
+Q_OBJECT
 
 public:
         PropertyRendererSection(QObject *parent=0);

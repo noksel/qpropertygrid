@@ -34,7 +34,7 @@
 
 class PropertyRendererGroup : public PropertyRenderer
 {
-Q_OBJECT;
+Q_OBJECT
 
 public:
         PropertyRendererGroup(QObject *parent=0);

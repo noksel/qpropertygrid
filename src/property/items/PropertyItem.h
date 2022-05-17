@@ -39,7 +39,7 @@
 * \brief rassemble les infos d'une propriete
 */
 class PropertyItem : public QObject , public TreeContainer<PropertyItem> {
-    Q_OBJECT;
+    Q_OBJECT
   protected:
 
     PropertyItemValueHolder *_valueHolder;

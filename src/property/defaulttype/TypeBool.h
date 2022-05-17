@@ -36,7 +36,7 @@
 
 class PropertyItemBool : public PropertyItem
 {
-        Q_OBJECT;
+        Q_OBJECT
 public:
         PropertyItemBool(QString name,const QVariant &value=QVariant(),PropertyItem *parent=0);
 
@@ -45,7 +45,7 @@ public:
 
 class PropertyRendererBool : public PropertyRenderer
 {
-Q_OBJECT;
+Q_OBJECT
 
 public:
         PropertyRendererBool(QObject *parent=0);

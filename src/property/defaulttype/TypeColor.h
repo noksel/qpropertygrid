@@ -35,7 +35,7 @@
 #include "delegate/PropertyRenderer.h"
 
 class PropertyItemColor : public PropertyItemGroup {
-    Q_OBJECT;
+    Q_OBJECT
 
   public:
     PropertyItemColor( QString name, const QVariant &value = QVariant(), PropertyItem *parent = 0 );
@@ -48,7 +48,7 @@ class PropertyItemColor : public PropertyItemGroup {
 
 
 class PropertyRendererColor : public PropertyRenderer {
-    Q_OBJECT;
+    Q_OBJECT
   protected:
     void drawChecker(QPainter * painter,const QRect &rec,int oneElemSize=3) const;
   public:

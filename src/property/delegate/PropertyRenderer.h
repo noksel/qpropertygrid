@@ -37,7 +37,7 @@
 #include "items/PropertyItem.h"
 class PropertyRenderer : public QObject
 {
-Q_OBJECT;
+Q_OBJECT
 protected:
 virtual PropertyItem* modelIndexToData(const QModelIndex &index=QModelIndex()) const
         {
