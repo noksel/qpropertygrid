@@ -3,7 +3,18 @@
 # Subdir relative project main directory: ./src/sample/sample01
 # Target is an application:  
 
-TARGETDEPS += ../../../src/property/lib/libproperty.so 
+
+QT       += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+CONFIG += c++17
+
+# You can make your code fail to compile if it uses deprecated APIs.
+# In order to do so, uncomment the following line.
+#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+#TARGETDEPS += ../../../src/property/lib/libproperty.so
+
+TEMPLATE = app
+
 LIBS += -lproperty 
 INCLUDEPATH += ../../../src/property/lib \
                ../../../src/property/core \
@@ -11,8 +22,8 @@ INCLUDEPATH += ../../../src/property/lib \
                ../../../src/property/model \
                ../../../src/property/items 
 QMAKE_LIBDIR = ../../../src/property/lib 
-CONFIG += release \
-          warn_on 
-TEMPLATE = app 
+#CONFIG += release \
+#          warn_on
+
 HEADERS += sample01.h 
 SOURCES += sample01.cpp 

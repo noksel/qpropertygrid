@@ -2,9 +2,10 @@
 # ------------------------------------------- 
 # Subdir relative project main directory: .
 # Target is a subdirs project 
-
-SUBDIRS += src 
 TEMPLATE = subdirs
+
+SUBDIRS += src \
+           examples
 #CONFIG += warn_on \
 #qt \
 #thread

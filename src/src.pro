@@ -2,9 +2,10 @@
 # ------------------------------------------- 
 # Subdir relative project main directory: ./src
 # Target is a subdirs project 
+TEMPLATE = subdirs
 
-SUBDIRS += property \
-           sample 
+SUBDIRS += property
+
 #CONFIG += release \
 #warn_on
-TEMPLATE = subdirs
+
