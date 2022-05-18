@@ -14,12 +14,12 @@ CONFIG += c++17
 
 
 #TARGETDEPS += ../../../src/property/libqproperty.a
-LIBS += ../../../src/property/debug/libqproperty.a
-INCLUDEPATH += ../../../src/property
+LIBS += ../../src/debug/libqproperty.a
+INCLUDEPATH += ../../src
 #CONFIG += debug \
 #          warn_on
 TEMPLATE = app 
 FORMS += sample02.ui 
 HEADERS += mainform.h 
-SOURCES += sample01.cpp \
+SOURCES += main.cpp \
            mainform.cpp 
