@@ -9,3 +9,5 @@ SUBDIRS += src \
 #CONFIG += warn_on \
 #qt \
 #thread
+
+examples.depends = src
