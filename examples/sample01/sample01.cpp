@@ -2,6 +2,8 @@
 
 #include <QApplication>
 #include <QTreeView>
+#include <QLabel>
+#include <QTextBrowser>
 #include "PropertyDelegate.h"
 #include "PropertyDelegateFactory.h"
 #include "PropertyRenderer.h"
@@ -23,64 +25,64 @@ int main(int argc, char **argv)
     PropertyModel *model=new PropertyModel();
     //on enregsitre le vector3 dans la factory statique
     // c'est mal fait de mettre le nom en dur, mais bon ca marche
-    QPropertyToItemFactory::instance().add<Vector3ToItem>("Vector3");
+//    QPropertyToItemFactory::instance().add<Vector3ToItem>("Vector3");
 
 
-    //un petit test
-    Vector3 v3;
-    v3.setZ(42.0); //hihi encore un ;)
-    QVariant v3Variant;
-    v3Variant.setValue(v3);
+//    //un petit test
+//    Vector3 v3;
+//    v3.setZ(42.0); //hihi encore un ;)
+//    QVariant v3Variant;
+//    v3Variant.setValue(v3);
 
 
 
-    QVariantToItem *convitem=QPropertyToItemFactory::instance().get<QVariantToItem>(v3Variant.typeName());
-    if(convitem!=0)
-        model->add
-                (convitem->fromQVariant(v3Variant,"Bah, un test de vector3"));
+//    QVariantToItem *convitem=QPropertyToItemFactory::instance().get<QVariantToItem>(v3Variant.typeName());
+//    if(convitem!=0)
+//        model->add
+//                (convitem->fromQVariant(v3Variant,"Bah, un test de vector3"));
     //////////////////////////////////////////
 
 
-    PropertyDelegateFactory::instance().add<StdRender>(NO_EDITOR_KEY,true);
+  //  PropertyDelegateFactory::instance().add<StdRender>(NO_EDITOR_KEY,true);
 
-    PropertyItem *se=model->add(new PropertySectionItem("section01"));
+    PropertyItem *se=model->add(new PropertyItemSection("section01"));
     PropertyItem *ptr=new PropertyItem("string (defaut editor/readonly)",se);
     ptr->setData("une string");
     ptr->setReadOnly(true);
     ptr=new PropertyItem("couleur (defaut editor/defaut render)",se);
     ptr->setData(QColor(0,255,0));
-    ptr->setData(PropertyItem::valueRendererRole,PropertyColorRenderer::RENDER_KEY);
+  //  ptr->setData(PropertyItem::valueRendererRole,PropertyRenderer::RENDER_KEY);
     ptr=new PropertyItem("int (slider editor/section render)",se);
     ptr->setData(0);
-    ptr->setData(PropertyItem::minIntRole,-42);
-    ptr->setData(PropertyItem::maxIntRole,42);
-    ptr->setData(PropertyItem::valueEditorRole,PropertyIntSliderEditor::EDITOR_KEY);
+  //  ptr->setData(PropertyItem::minIntRole,-42);
+  //  ptr->setData(PropertyItem::maxIntRole,42);
+   // ptr->setData(PropertyItem::valueEditorRole,PropertyIntSliderEditor::EDITOR_KEY);
 
 
-    se=model->add(new PropertyGroupItem("GROUP01"));
+    se=model->add(new PropertyItemGroup("GROUP01"));
     ptr=new PropertyItem("test",se);
     ptr->setData("unevaleur");
     ptr=new PropertyItem("test01",se);
     ptr->setData("42");
-    ptr->setData(PropertyItem::valueEditorRole,PropertyIntSliderEditor::EDITOR_KEY);
+  //  ptr->setData(PropertyItem::valueEditorRole,PropertyIntSliderEditor::EDITOR_KEY);
 
-    se=new PropertyGroupItem("SOUSGROUP 01",se);
+    se=new PropertyItemGroup("SOUSGROUP 01",se);
     ptr=new PropertyItem("test",se);
     ptr->setData("AAAAAAA");
     ptr=new PropertyItem("val",se);
     ptr->setData("0000999");
-    ptr->setData(PropertyItem::valueEditorRole,PropertyIntSliderEditor::EDITOR_KEY);
-    ptr->setData(PropertyItem::minIntRole,42);
-    ptr->setData(PropertyItem::maxIntRole,420);
+ //   ptr->setData(PropertyItem::valueEditorRole,PropertyIntSliderEditor::EDITOR_KEY);
+  //  ptr->setData(PropertyItem::minIntRole,42);
+ //   ptr->setData(PropertyItem::maxIntRole,420);
 
-    QObjectImporter importer;
+  //  QObjectImporter importer;
     QLabel *l=new QLabel();
     l->setObjectName("Whaou c'est les proprietes d'un QLabel");
-    se=model->add(new PropertySectionItem("Tests d'import de QOBJECTS"));
-    importer.importFrom(l,se);
+    se=model->add(new PropertyItemSection("Tests d'import de QOBJECTS"));
+  //  importer.importFrom(l,se);
     QTextBrowser *te=new QTextBrowser();
     te->setObjectName("Pourquoi pas un textbrowser ??");
-    importer.importFrom(te,se);
+   // importer.importFrom(te,se);
     QTreeView widget;
     widget.setModel(model);
     //widget.setColumnCount(2);

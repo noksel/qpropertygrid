@@ -6,7 +6,7 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-          #sample01 \
+          sample01 \
            sample02
 #CONFIG += release \
 #warn_on

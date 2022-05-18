@@ -40,7 +40,7 @@ Q_DECLARE_METATYPE(Vector3);
 
 
 /////////////// pour gerer Vector3 dans les properties ;
-#include "modelmanipulators/qvarianttoitem.h"
+/*#include "modelmanipulators/qvarianttoitem.h"
 
 class Vector3ToItem : public QVariantToItem
 {
@@ -67,7 +67,7 @@ ptr->setData(PropertyItem::valueEditorRole,PropertyIntSliderEditor::EDITOR_KEY);
 return parent;
 }
 
-};
+};*/
 
 
 
